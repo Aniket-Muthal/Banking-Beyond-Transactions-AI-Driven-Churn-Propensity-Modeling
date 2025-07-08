@@ -1,119 +1,139 @@
-# Banking-Beyond-Transactions-AI-Driven-Churn-Propensity-Modeling
+# 🏦 Banking Beyond Transactions: AI-Driven Churn Propensity Modeling
 
-**Problem Statement:**
-- Customer churn is a significant issue for banks, impacting revenue and customer lifetime value. The goal is to develop a machine learning model that predicts whether a customer will churn (leave the bank) based on their demographic, financial, and account activity data.
+This project aims to **predict customer churn** for a retail bank using demographic, behavioral, and account-level data. By identifying at-risk customers early, the bank can **proactively intervene**, improve retention, and protect long-term revenue.
 
-**Objective:**
-- Build a predictive model to classify customers as likely to churn (Exited = 1) or stay (Exited = 0).
-- Identify key factors influencing customer attrition.
-- Provide actionable insights for customer retention strategies.
+---
 
-**Strategy**
-- It is a Supervised Binary Classification problem.
-- Along with correctly classifying customers as churn or retain, our focus is to minimize the error of missing customers who are likely to churn as it directly related to revenue of banks.
-- To be precise, high recall for positive instances is the requirement.
+## 📌 Problem Statement
 
-**Data Dictionary:**
+Customer churn is a critical concern for banks. Losing a valuable customer not only affects immediate revenue but also impacts lifetime customer value. Traditional churn management is often reactive. This project aims to shift the paradigm toward **predictive, data-driven retention strategies**.
 
-The dataset consists of 10,000 records with 13 features:
+---
 
-1. CustomerId: Unique identifier for each customer.
-2. Lastname: Customer's last name (not useful for prediction).
-3. CreditScore: Customer's credit rating.
-4. Geography: Country of the customer (France, Spain, Germany).
-5. Gender: Male or Female.
-6. Age: Customer's age.
-7. Tenure: Number of years the customer has been with the bank.
-8. Balance: Account balance.
-9. NumOfProducts: Number of products the customer has with the bank.
-10. HasCrCard: Whether the customer has a credit card (1 = Yes, 0 = No).
-11. IsActiveMember: Whether the customer is an active member (1 = Yes, 0 = No).
-12. EstimatedSalary: Customer's estimated salary.
-13. Exited: Target variable (1 = Churned, 0 = Stayed).
+## 🎯 Objectives
 
-**Performance Metrics Summary:**
+- ✅ Build a machine learning model to classify customers as **likely to churn (Exited=1)** or **retain (Exited=0)**
+- ✅ Understand key demographic and behavioral drivers of churn
+- ✅ Provide **actionable recommendations** to improve customer retention
+- ✅ Focus on **high recall** for churners to minimize missed exits
 
-**1. Accuracy:**
+---
 
-- The model is able to correctly classify 86.7% datapoints of the training data and 85.8% of the unseen test data showcasing good generalization.
+## 🧾 Dataset Overview
 
-**2. Precision:**
+The dataset includes **10,000 customer records** and 13 features:
 
-a. Class 0 (Retained Customers): **0.93**
-- 93% of the predicted retained customers are actually retained.
+| Feature         | Description                                       |
+|------------------|---------------------------------------------------|
+| CustomerId       | Unique customer identifier (non-predictive)       |
+| Lastname         | Surname of customer (non-predictive)              |
+| CreditScore      | Customer’s credit rating                          |
+| Geography        | Country of the customer (France, Spain, Germany)  |
+| Gender           | Male or Female                                    |
+| Age              | Customer age                                      |
+| Tenure           | Years the customer has been with the bank         |
+| Balance          | Account balance                                   |
+| NumOfProducts    | # of bank products used                           |
+| HasCrCard        | 1 = Yes, 0 = No                                    |
+| IsActiveMember   | 1 = Yes, 0 = No                                    |
+| EstimatedSalary  | Estimated salary                                  |
+| Exited (Target)  | 1 = Churned, 0 = Stayed                           |
 
-b. Class 1 (Churned Customers): **0.63**
-- 63% of the predicted churned customers actually churned.
+---
 
-**3. Recall:**
+## 🛠️ Strategy
 
-a. Class 0 (Retained Customers): **0.89**
-- 89% of the retained customers are correctly identified.
+- 📊 **Problem Type**: Supervised Binary Classification  
+- 🚨 **Business Priority**: Reduce False Negatives - missing churners hurts revenue  
+- 📌 **Modeling Goal**: Maximize **Recall** for Exited = 1 while maintaining fair Precision  
 
-b. Class 1 (Churned Customers): **0.75**
-- 75% of the churned customers are correctly identified.
+---
 
-**4. F1:**
+## 📈 Model Performance
 
-a. Class 0 (Retained Customers): **0.91**
-- The model is correctly identifying 91% of the retained customers with high Precision and Recall.
+| Metric            | Class 0 (Retained) | Class 1 (Churned) |
+|-------------------|--------------------|--------------------|
+| Precision         | 0.93               | 0.63               |
+| Recall            | 0.89               | 0.75               |
+| F1 Score          | 0.91               | 0.68               |
 
-b. Class 1 (Churned Customers): **0.68**
-- The model correctly identifies 68% of the churned instances and misses the other due to imbalanced distribution of churned instances.
+### Global Metrics
 
-**5. Macro Avg:**
+| Metric       | Value  |
+|--------------|--------|
+| Accuracy     | 86%    |
+| ROC-AUC      | 0.88   |
+| PR-AUC       | 0.72   |
+| Macro F1     | 0.80   |
+| Weighted F1  | 0.86   |
 
-- Describes average performance of both the churned and retained classes assigning equal weightage to each class.
-- Precision (**0.78**), Recall (**0.82**) and F1 (**0.80**)
+> 📌 **Interpretation**: The model performs well on both classes, especially achieving high **recall on churners** (75%), which aligns with business strategy.
 
-**6. Weighted Avg:**
+---
 
-- Describes weighted average performance of both the churned and retained classes by taking into account the distribution of classes.
-- Precision (**0.87**), Recall (**0.86**) and F1 (**0.86**)
+## 🧠 Key Insights
 
-**Recommendations**
-**A. Strategies for impactful features**
+- 📌 **Age**: Older customers are more likely to churn  
+- 🌍 **Geography**: Customers from Germany show higher churn  
+- ♀️ **Gender**: Female customers churn at higher rates  
+- 💤 **Activity**: Inactive members are highly likely to churn  
+- 💳 **Credit Card**: Those without a credit card churn more  
+- 📦 **NumOfProducts**: Customers with 3–4 products churn more than those with 1–2  
+- 💰 **Balance**: High-balance customers churn in greater absolute numbers
 
-**Insights:**
+---
 
-- Age: Older customers are more likely to churn
-- Geography: Customers from a low customer base country (Germany) are more likely to churn
-- Gender: Feamle customers tend to leave banks at higher rate
-- Active Member/ Credit Card: Inactive customers or those with no Credit Cards churn more
-- Number of Products: Though less in number, customers with 3 or 4 products churn at higher rate
-- Balance: Customers maintaining high balance are churned in high numbers
+## 💡 Strategic Recommendations
 
-Any combination of the above features increases the chances of churning.
+### A. For High-Impact Features
 
-**Suggestions:**
+| Feature          | Recommendation                                                                 |
+|------------------|---------------------------------------------------------------------------------|
+| Age              | Offer retirement planning and personal engagement for senior citizens          |
+| Geography        | Launch loyalty perks in smaller markets like Germany                           |
+| Gender           | Design women-centric financial literacy & engagement programs                  |
+| Activity         | Run re-engagement campaigns and satisfaction surveys for inactive members      |
+| Credit Card      | Promote credit card offerings with exclusive benefits                          |
+| Balance          | Investigate reasons for churn among high-balance customers                     |
+| NumOfProducts    | Improve support for high-product customers; identify dissatisfaction factors    |
 
-- Bank may focus on personalized engagement for older customers by offering retirement plans and investment plans.
-- Providing door step financial services to senior citizens and proper timely feedback mechanism can enhance customer relationship.
-- Bank must prioritize improving services even at the location with small customer base and plan special loyalty programs and perks to retain customers in the region of higher churn rates.
-- Gender specific programs to be initiated to enhance banking experiences for female customers like - literacy programs, investment schemes tailored to women.
-- Re-engagement campaigns to be launched to re-activate the customers by offering attractive services including digital marketing and banking.
-- Engage customers by offering them Credit Cards with perks and competitive rates.
-- Bank must also check on the products as to why customers churned even with higher products usage and try to mitigate the issue by offering strong customer support.
-- Customers who exited with high balances in the account must be analyzed further to get more insights.
+### B. For Low-Impact Features
 
-**B. Strategies for less important features**
+| Feature            | Action                                                                 |
+|--------------------|------------------------------------------------------------------------|
+| CreditScore        | Analyze interactions with geography and product usage                  |
+| EstimatedSalary    | Consider outlier handling and clustering                              |
+| Tenure             | Study effect of tenure in conjunction with age and activity status     |
 
-- Credit Scores, Estimated Salary and Tenure showed minimal impact on the churn.
-- Bank must analyze the behavior of these features and try to study their interactions with other features to improve the predictive power.
+---
 
-In general, alongwith re-connect campaigns, Bank must opt for Customer Retention programs which are demographic specific (age, gender and region). That is, try segementing customers in order to offer services and products as per their needs.
+## 📦 Model Pipeline
 
-**Conclusion**
-- A Machine Learning model is built for Bank Churn prediction using Random Forest Classifier.
-- I have analyzed various demographic factors like Age, Gender, Country and financial factors like Credit Score, Salary, Balance, Credit Card, Number of Products, Tenure and studied its effect on the likelihood of churn.
-- As per the dataset, key factors that influence churn are Age, Products with Bank, possession of Credit Card, Balance, Country and the Gender of the customer.
-- The overall performance of the model is well.
+- 📌 **Data Cleaning**: Remove ID/Name columns, handle outliers
+- 📌 **Feature Encoding**: Geography & Gender — One-Hot or Ordinal
+- 📌 **Class Rebalancing**: SMOTE / Class weighting
+- 📌 **Model**: Random Forest Classifier (ensemble for robustness)
+- 📌 **Evaluation**: Detailed metrics on both classes + ROC and PR curves
+- 📌 **Explainability**: Feature importance via SHAP or permutation methods
 
-**Summary:**
+---
 
-- Good generalization with a high Accuracy of 86% on the chunk of unseen test data and about 84% on the overall unseen test data.
-- Good Recall for Churners (75%) indicating that the churned customers are identified well enough while balancing the Precision score.
-- AUC-ROC score of 0.8828 suggests models ability to effectively differentiate between churned customers and the retained customers.
-- PR-AUC of 0.7189 showcases the moderate balance between Precision and the Recall while capturing the cases of Churned customers.
+## ✅ Final Verdict
 
-Using the models predictive power, Bank can proactively identify customers that are at the risk of leaving, enabling it to prioritize strategies for customer retention and thereby maximizing the revenue.
+The project successfully delivers:
+
+- 📈 **A recall-optimized churn prediction model**
+- 🧩 **Comprehensive feature analysis** for targeted intervention
+- 🎯 **Strategic segmentation** of customer base
+- 💬 **Clear business recommendations** to increase retention
+
+Using this model, the bank can proactively **identify at-risk customers**, deploy personalized engagement, and **maximize revenue per user** across demographics.
+
+---
+
+## 📬 Contact
+
+Project Owner: **Aniket**  
+Let’s transform customer insight into strategy 💡📊
+- 📧 Email: [aniketmuthal4@gmail.com]
+- 🔗 LinkedIn: [https://www.linkedin.com/in/aniket-muthal]
